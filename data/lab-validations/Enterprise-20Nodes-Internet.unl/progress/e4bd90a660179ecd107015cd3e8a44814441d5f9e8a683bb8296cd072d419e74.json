@@ -1,0 +1,94 @@
+{
+    "checks": {
+        "check-pc1-gw": {
+            "definition_hash": "b471b531ff6345c7cd653a4740ba2e618eee352179a7e2867ae851babc0d6faa",
+            "status": "failed",
+            "attempts": 24,
+            "updated_at": "2026-09-28T05:55:47+00:00",
+            "detail": "Gateway did not meet the expected reachability",
+            "observed": {
+                "type": "gateway",
+                "source_node": 14,
+                "show_ip": {
+                    "transport": "done",
+                    "command": "show ip",
+                    "output": "name: PC1\r\neth0: 192.168.10.10/24 gateway 192.168.10.1 mac 00:50:79:66:00:0e mtu 9000",
+                    "parsed": {
+                        "matched": true,
+                        "address": "192.168.10.10/24",
+                        "gateway": "192.168.10.1",
+                        "dns": null,
+                        "mac": "00:50:79:66:00:0e",
+                        "mtu": 9000
+                    }
+                },
+                "gateway": "192.168.10.1",
+                "ping": {
+                    "transport": "done",
+                    "command": "ping 192.168.10.1 -c 5 -s 56",
+                    "output": "Request timeout for icmp_seq=1\r\nRequest timeout for icmp_seq=2\r\nRequest timeout for icmp_seq=3\r\nRequest timeout for icmp_seq=4\r\nRequest timeout for icmp_seq=5\r\n5 packets transmitted, 0 received, 100% packet loss\r\n",
+                    "parsed": {
+                        "target": "192.168.10.1",
+                        "sent": 5,
+                        "received": 0,
+                        "loss_percent": 100,
+                        "verified_summary": true,
+                        "replies": []
+                    }
+                }
+            }
+        },
+        "check-pc1-to-pc2": {
+            "definition_hash": "6f36013f89f8395f13cc0cdb0fde1cd4afac2950c964ba780f5b6bf8d5d7aa80",
+            "status": "passed",
+            "attempts": 25,
+            "updated_at": "2026-09-28T05:55:50+00:00",
+            "detail": "Ping check passed",
+            "observed": {
+                "type": "ping",
+                "source_node": 14,
+                "transport": "done",
+                "command": "ping 192.168.10.2 -c 4 -s 56",
+                "output": "Reply from 192.168.10.2: bytes=56 time=2ms ttl=64\r\nReply from 192.168.10.2: bytes=56 time=1ms ttl=64\r\nReply from 192.168.10.2: bytes=56 time=1ms ttl=64\r\nReply from 192.168.10.2: bytes=56 time=1ms ttl=64\r\n4 packets transmitted, 4 received, 0% packet loss\r\n",
+                "parsed": {
+                    "target": "192.168.10.2",
+                    "sent": 4,
+                    "received": 4,
+                    "loss_percent": 0,
+                    "verified_summary": true,
+                    "replies": [
+                        {
+                            "address": "192.168.10.2",
+                            "bytes": 56,
+                            "time_ms": 2,
+                            "ttl": 64
+                        },
+                        {
+                            "address": "192.168.10.2",
+                            "bytes": 56,
+                            "time_ms": 1,
+                            "ttl": 64
+                        },
+                        {
+                            "address": "192.168.10.2",
+                            "bytes": 56,
+                            "time_ms": 1,
+                            "ttl": 64
+                        },
+                        {
+                            "address": "192.168.10.2",
+                            "bytes": 56,
+                            "time_ms": 1,
+                            "ttl": 64
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "schema_version": 1,
+    "principal": {
+        "username": "admin",
+        "pod": 44
+    }
+}

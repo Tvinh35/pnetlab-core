@@ -1,0 +1,6 @@
+created: Thu, 24 Sep 2026 05:30:06 +0000
+old_version: 6.8.81resolute1
+new_version: 6.8.83resolute1
+host: pnet
+labs.tgz size_bytes=2463 sha256=5585cd8c406188ce825678f086dbb9bdd48524f0245aea6d7d623959d1389615
+pnetlab_db.sql.gz size_bytes=4097 sha256=0c94d9d89887cf1d6c641dd9d05001df866075da4ab03fed1179d44daa7ff7dd

@@ -1,0 +1,94 @@
+{
+  "_loai_node": "Dynamips (Cisco Classic IOS: C7200, C3725, C3640, C2691)",
+  "_trang_thai_tren_may_ao": "ĐÃ CÓ SẴN TRÊN MÁY ẢO: /opt/unetlab/addons/dynamips/c7200-adventerprisek9-mz.152-4.S2.image",
+  "_thu_muc_image": "/opt/unetlab/addons/dynamips/",
+  "_danh_sach_image_dynamips_chuan_trong_pnetlab": [
+    "c7200-adventerprisek9-mz.152-4.S2.image (Đã có sẵn trên máy)",
+    "c7200-[2]-adventerprisek9-mz.152-4.M7.image",
+    "c3725-adventerprisek9-mz.124-15.T14.image",
+    "c3660-[1]-jk9s2-mz.124-25d.image",
+    "c2600-[3]-adventerprisek9-mz.124-25d.image"
+  ],
+  
+  "template_chuan_day_du_moi_truong": {
+    "name": "R1-C7200",
+    "type": "dynamips",
+    "template": "c7200",
+    "image": "c7200-adventerprisek9-mz.152-4.S2.image",
+    "ram": 512,
+    "nvram": 128,
+    "idlepc": "0x606dfb18",
+    "ethernet": 2,
+    "serial": 2,
+    "dynamips_options": "",
+    "icon": "Router.png",
+    "left": 250,
+    "top": 200,
+    "delay": 0,
+    "config": 1,
+    "config_data": "hostname R1-C7200\ninterface FastEthernet0/0\n ip address 10.2.2.1 255.255.255.0\n no shutdown\n"
+  },
+
+  "mo_ta_chi_tiet_cac_truong": {
+    "name": { "kieu": "string", "bat_buoc": true, "mo_ta": "Tên định danh node Dynamips" },
+    "type": { "kieu": "string", "bat_buoc": true, "mo_ta": "Loại thiết bị, luôn là 'dynamips'" },
+    "template": { "kieu": "string", "bat_buoc": true, "mo_ta": "Mã template: 'c7200', 'c3725', 'c3660', 'c3640', 'c2691'" },
+    "image": { "kieu": "string", "bat_buoc": true, "mo_ta": "Tên file image trong /opt/unetlab/addons/dynamips/. Máy này đã có sẵn: 'c7200-adventerprisek9-mz.152-4.S2.image'" },
+    "ram": { "kieu": "integer", "bat_buoc": false, "mac_dinh": 512, "mo_ta": "RAM ảo cấp cho IOS (MB)" },
+    "nvram": { "kieu": "integer", "bat_buoc": false, "mac_dinh": 128, "mo_ta": "NVRAM (KB)" },
+    "idlepc": { "kieu": "string", "bat_buoc": false, "mac_dinh": "0x0", "mo_ta": "Giá trị Idle-PC chống ngốn CPU" },
+    "ethernet": { "kieu": "integer", "bat_buoc": false, "mac_dinh": 2, "mo_ta": "Số lượng cổng Ethernet" },
+    "serial": { "kieu": "integer", "bat_buoc": false, "mac_dinh": 0, "mo_ta": "Số lượng cổng Serial" },
+    "dynamips_options": { "kieu": "string", "bat_buoc": false, "mac_dinh": "", "mo_ta": "Tham số bổ sung cho tiến trình dynamips" },
+    "icon": { "kieu": "string", "bat_buoc": false, "mac_dinh": "Router.png", "mo_ta": "Icon thiết bị hiển thị" },
+    "left / top": { "kieu": "integer", "bat_buoc": false, "mac_dinh": "Tự sắp xếp", "mo_ta": "Tọa độ X và Y trên canvas" },
+    "delay": { "kieu": "integer", "bat_buoc": false, "mac_dinh": 0, "mo_ta": "Số giây trễ khởi động node khi Start" },
+    "config": { "kieu": "integer", "bat_buoc": false, "mac_dinh": 0, "mo_ta": "1 nếu nạp startup-config, 0 nếu không" },
+    "config_data": { "kieu": "string", "bat_buoc": false, "mac_dinh": "", "mo_ta": "Cấu hình IOS khởi động ban đầu" }
+  },
+
+  "vi_du_cu_the_san_sang_import": {
+    "nodes": [
+      {
+        "name": "R1-Dynamips-7200",
+        "type": "dynamips",
+        "template": "c7200",
+        "image": "c7200-adventerprisek9-mz.152-4.S2.image",
+        "ram": 512,
+        "nvram": 128,
+        "idlepc": "0x606dfb18",
+        "ethernet": 2,
+        "serial": 2,
+        "icon": "Router.png",
+        "left": 250,
+        "top": 200,
+        "config": 1,
+        "config_data": "hostname R1-Dynamips-7200\ninterface FastEthernet0/0\n ip address 10.2.2.1 255.255.255.0\n no shutdown\n"
+      },
+      {
+        "name": "R2-Dynamips-7200",
+        "type": "dynamips",
+        "template": "c7200",
+        "image": "c7200-adventerprisek9-mz.152-4.S2.image",
+        "ram": 512,
+        "nvram": 128,
+        "idlepc": "0x606dfb18",
+        "ethernet": 2,
+        "serial": 2,
+        "icon": "Router.png",
+        "left": 550,
+        "top": 200,
+        "config": 1,
+        "config_data": "hostname R2-Dynamips-7200\ninterface FastEthernet0/0\n ip address 10.2.2.2 255.255.255.0\n no shutdown\n"
+      }
+    ],
+    "links": [
+      {
+        "src_node": "R1-Dynamips-7200",
+        "src_interface": "f0/0",
+        "dst_node": "R2-Dynamips-7200",
+        "dst_interface": "f0/0"
+      }
+    ]
+  }
+}

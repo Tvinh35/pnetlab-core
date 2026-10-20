@@ -1,0 +1,80 @@
+{
+  "_loai_node": "Docker Container (Web Server, Network Capture, Wi-Fi Spike, Alpine)",
+  "_trang_thai_tren_may_ao": "ĐÃ CÓ SẴN TRÊN MÁY ẢO: pnet-capture-web:1.0, pnet-wifi-spike:1.0",
+  "_thu_muc_image": "Docker Local Image Cache (docker images)",
+  "_danh_sach_image_docker_co_san": [
+    "pnet-capture-web:1.0 (ĐÃ CÓ SẴN TRÊN MÁY ẢO)",
+    "pnet-wifi-spike:1.0 (ĐÃ CÓ SẴN TRÊN MÁY ẢO)",
+    "rspnet/pnet-capture-web:latest (ĐÃ CÓ SẴN TRÊN MÁY ẢO)"
+  ],
+  
+  "template_chuan_day_du_moi_truong": {
+    "name": "Docker1",
+    "type": "docker",
+    "template": "docker",
+    "image": "pnet-capture-web:1.0",
+    "ram": 1024,
+    "ethernet": 2,
+    "console": "telnet",
+    "icon": "Docker.png",
+    "left": 250,
+    "top": 200,
+    "delay": 0,
+    "docker_options": "--privileged",
+    "username": "root",
+    "password": "pnetlabpassword"
+  },
+
+  "mo_ta_chi_tiet_cac_truong": {
+    "name": { "kieu": "string", "bat_buoc": true, "mo_ta": "Tên container node trên sơ đồ (vd: 'Docker1', 'Docker2' theo prefix mặc định)" },
+    "type": { "kieu": "string", "bat_buoc": true, "mo_ta": "Loại thiết bị, luôn là 'docker'" },
+    "template": { "kieu": "string", "bat_buoc": true, "mo_ta": "Template thiết bị, luôn là 'docker'" },
+    "image": { "kieu": "string", "bat_buoc": true, "mo_ta": "Tên Docker image (phải có sẵn trên máy chủ qua lệnh 'docker images'. Máy này đã có: 'pnet-capture-web:1.0', 'pnet-wifi-spike:1.0')" },
+    "ram": { "kieu": "integer", "bat_buoc": false, "mac_dinh": 1024, "mo_ta": "Bộ nhớ RAM giới hạn cho container (MB)" },
+    "ethernet": { "kieu": "integer", "bat_buoc": false, "mac_dinh": 2, "mo_ta": "Số card mạng veth kết nối ra lab (mặc định 2: eth0, eth1)" },
+    "console": { "kieu": "string", "bat_buoc": false, "mac_dinh": "telnet", "mo_ta": "Giao thức console: 'telnet' hoặc 'http'" },
+    "icon": { "kieu": "string", "bat_buoc": false, "mac_dinh": "Docker.png", "mo_ta": "Icon hiển thị ('Docker.png', 'Dockerserver-1.png')" },
+    "left": { "kieu": "integer", "bat_buoc": false, "mac_dinh": "Tự sắp xếp", "mo_ta": "Tọa độ X trên canvas" },
+    "top": { "kieu": "integer", "bat_buoc": false, "mac_dinh": "Tự sắp xếp", "mo_ta": "Tọa độ Y trên canvas" },
+    "delay": { "kieu": "integer", "bat_buoc": false, "mac_dinh": 0, "mo_ta": "Số giây trễ khởi động node khi Start" }
+  },
+
+  "vi_du_cu_the_san_sang_import": {
+    "nodes": [
+      {
+        "name": "Docker1",
+        "type": "docker",
+        "template": "docker",
+        "image": "pnet-capture-web:1.0",
+        "ram": 1024,
+        "ethernet": 2,
+        "console": "telnet",
+        "icon": "Docker.png",
+        "left": 250,
+        "top": 200,
+        "docker_options": "--privileged"
+      },
+      {
+        "name": "Docker2",
+        "type": "docker",
+        "template": "docker",
+        "image": "pnet-capture-web:1.0",
+        "ram": 1024,
+        "ethernet": 2,
+        "console": "telnet",
+        "icon": "Docker.png",
+        "left": 550,
+        "top": 200,
+        "docker_options": "--privileged"
+      }
+    ],
+    "links": [
+      {
+        "src_node": "Docker1",
+        "src_interface": "eth0",
+        "dst_node": "Docker2",
+        "dst_interface": "eth0"
+      }
+    ]
+  }
+}

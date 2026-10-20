@@ -1,0 +1,64 @@
+{
+  "_loai_node": "VPCS (Virtual PC Simulator - Máy trạm nhẹ dùng để test ping, traceroute, DHCP)",
+  "_thu_muc_image": "Tích hợp sẵn trong PNetLab, không cần file image",
+  
+  "template_chuan_day_du_moi_truong": {
+    "name": "VPC1",
+    "type": "vpcs",
+    "template": "vpcs",
+    "image": "",
+    "ethernet": 1,
+    "icon": "Desktop.png",
+    "left": 250,
+    "top": 200,
+    "delay": 0,
+    "config": 1,
+    "config_data": "set pcname VPC1\nip 192.168.1.50/24 192.168.1.1\n"
+  },
+
+  "mo_ta_chi_tiet_cac_truong": {
+    "name": { "kieu": "string", "bat_buoc": true, "mo_ta": "Tên định danh VPC (mặc định 'VPC1', 'VPC2' khi thêm thủ công)" },
+    "type": { "kieu": "string", "bat_buoc": true, "mo_ta": "Loại thiết bị, luôn là 'vpcs'" },
+    "template": { "kieu": "string", "bat_buoc": true, "mo_ta": "Template thiết bị, luôn là 'vpcs'" },
+    "image": { "kieu": "string", "bat_buoc": false, "mac_dinh": "''", "mo_ta": "Không cần thiết cho VPCS, để chuỗi rỗng ''" },
+    "ethernet": { "kieu": "integer", "bat_buoc": false, "mac_dinh": 1, "mo_ta": "Số lượng cổng mạng của VPCS (thường là 1 tương ứng với eth0)" },
+    "icon": { "kieu": "string", "bat_buoc": false, "mac_dinh": "Desktop.png", "mo_ta": "Icon máy tính hiển thị trên canvas ('Desktop.png', 'PC-2D-Desktop-Generic-S.svg')" },
+    "left": { "kieu": "integer", "bat_buoc": false, "mac_dinh": "Tự sắp xếp", "mo_ta": "Tọa độ X trên canvas" },
+    "top": { "kieu": "integer", "bat_buoc": false, "mac_dinh": "Tự sắp xếp", "mo_ta": "Tọa độ Y trên canvas" },
+    "delay": { "kieu": "integer", "bat_buoc": false, "mac_dinh": 0, "mo_ta": "Số giây trễ khởi động node khi Start" },
+    "config_data": { "kieu": "string", "bat_buoc": false, "mac_dinh": "", "mo_ta": "Tập lệnh cấu hình sẵn của VPCS (vd: 'ip 192.168.1.10/24 192.168.1.1' hoặc 'dhcp')" }
+  },
+
+  "vi_du_cu_the_san_sang_import": {
+    "nodes": [
+      {
+        "name": "VPC1",
+        "type": "vpcs",
+        "template": "vpcs",
+        "ethernet": 1,
+        "icon": "Desktop.png",
+        "left": 250,
+        "top": 200,
+        "config_data": "set pcname VPC1\nip 192.168.1.10/24 192.168.1.1\n"
+      },
+      {
+        "name": "VPC2",
+        "type": "vpcs",
+        "template": "vpcs",
+        "ethernet": 1,
+        "icon": "Desktop.png",
+        "left": 550,
+        "top": 200,
+        "config_data": "set pcname VPC2\ndhcp\n"
+      }
+    ],
+    "links": [
+      {
+        "src_node": "VPC1",
+        "src_interface": "eth0",
+        "dst_node": "VPC2",
+        "dst_interface": "eth0"
+      }
+    ]
+  }
+}

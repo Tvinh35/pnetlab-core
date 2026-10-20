@@ -1,0 +1,114 @@
+{
+  "_loai_node": "QEMU Virtual Machine (Cisco CSR1000v, IOSv, ASAv, FortiGate, MikroTik, Linux, Windows)",
+  "_trang_thai_tren_may_ao": "ĐÃ CÓ SẴN TRÊN MÁY ẢO: csr1000vng-universalk9.16.09.05-serial",
+  "_kho_image_pnetlab": "Kho PNetLab v8 có sẵn 459 Image QEMU tải được từ menu System -> Get Image (hoặc ishare2)",
+  "_thu_muc_image": "/opt/unetlab/addons/qemu/",
+  "_danh_sach_image_qemu_chuan_pho_bien": [
+    "csr1000vng-universalk9.16.09.05-serial (ĐÃ CÓ SẴN TRÊN MÁY ẢO)",
+    "fortinet-FGT-v6-4-build1579 (FortiGate Firewall v6.4 - ĐÃ CÓ SẴN TRÊN MÁY ẢO)",
+    "vios-adventerprisek9-m.SPA.154-3M8 (Cisco IOSv L3 Router)",
+    "viosl2-15.2.4.55e (Cisco IOSv L2 Switch)",
+    "fortinet-FGT-v7.0.3build0237 (FortiGate Firewall v7.0)",
+    "mikrotik-6.49 (MikroTik RouterOS v6)",
+    "mikrotik-7.17 (MikroTik RouterOS v7)",
+    "linux-ubuntu-server-20.04 (Ubuntu Server 20.04)",
+    "linux-debian-10 (Debian 10)",
+    "win-10 (Windows 10)"
+  ],
+  
+  "template_chuan_day_du_moi_truong": {
+    "name": "CSR1",
+    "type": "qemu",
+    "template": "csr1000vng",
+    "image": "csr1000vng-universalk9.16.09.05-serial",
+    "cpu": 2,
+    "cpulimit": 1,
+    "ram": 4096,
+    "ethernet": 4,
+    "console": "telnet",
+    "console_2nd": "",
+    "qemu_arch": "x86_64",
+    "qemu_nic": "vmxnet3",
+    "qemu_options": "-machine type=pc,accel=kvm -cpu host -serial mon:stdio -nographic -no-user-config -nodefaults -rtc base=utc",
+    "firstmac": "50:00:00:01:00:00",
+    "icon": "CSRv1000.png",
+    "left": 250,
+    "top": 200,
+    "delay": 0,
+    "config": 1,
+    "config_data": "hostname CSR1\ninterface GigabitEthernet1\n ip address 10.1.1.1 255.255.255.0\n no shutdown\n",
+    "username": "admin",
+    "password": "Password123!"
+  },
+
+  "mo_ta_chi_tiet_cac_truong": {
+    "name": { "kieu": "string", "bat_buoc": true, "mo_ta": "Tên định danh node trên sơ đồ (vd: 'CSR1', 'CSR2' theo prefix mặc định khi thêm thủ công)" },
+    "type": { "kieu": "string", "bat_buoc": true, "mo_ta": "Loại thiết bị, luôn là 'qemu'" },
+    "template": { "kieu": "string", "bat_buoc": true, "mo_ta": "Template định dạng máy ảo ('csr1000vng', 'csr1000v', 'fortinet', 'vios', 'linux')" },
+    "image": { "kieu": "string", "bat_buoc": true, "mo_ta": "Tên thư mục con trong /opt/unetlab/addons/qemu/. Máy này đã có sẵn: 'csr1000vng-universalk9.16.09.05-serial'" },
+    "cpu": { "kieu": "integer", "bat_buoc": false, "mac_dinh": "Theo template (1-4, CSR1000v khuyến nghị 2)", "mo_ta": "Số vCPU cấp cho máy ảo" },
+    "cpulimit": { "kieu": "integer", "bat_buoc": false, "mac_dinh": 1, "mo_ta": "1: Giới hạn CPU host tránh quá tải, 0: Không giới hạn" },
+    "ram": { "kieu": "integer", "bat_buoc": false, "mac_dinh": 4096, "mo_ta": "Dung lượng RAM cấp phát (MB)" },
+    "ethernet": { "kieu": "integer", "bat_buoc": false, "mac_dinh": 4, "mo_ta": "Số card mạng ảo (NIC)" },
+    "console": { "kieu": "string", "bat_buoc": false, "mac_dinh": "telnet", "mo_ta": "Giao thức console: 'telnet', 'vnc', hoặc 'rdp'" },
+    "console_2nd": { "kieu": "string", "bat_buoc": false, "mac_dinh": "", "mo_ta": "Giao thức console phụ nếu có" },
+    "qemu_arch": { "kieu": "string", "bat_buoc": false, "mac_dinh": "x86_64", "mo_ta": "Kiến trúc CPU: 'x86_64' hoặc 'i386'" },
+    "qemu_nic": { "kieu": "string", "bat_buoc": false, "mac_dinh": "vmxnet3", "mo_ta": "Loại driver NIC: 'vmxnet3', 'virtio-net-pci', 'e1000'" },
+    "qemu_options": { "kieu": "string", "bat_buoc": false, "mac_dinh": "Theo template", "mo_ta": "Tham số dòng lệnh tùy chỉnh bổ sung cho QEMU" },
+    "firstmac": { "kieu": "string", "bat_buoc": false, "mac_dinh": "Tự sinh", "mo_ta": "Địa chỉ MAC cơ sở card mạng (50:00:00:xx:xx:xx)" },
+    "icon": { "kieu": "string", "bat_buoc": false, "mac_dinh": "CSRv1000.png", "mo_ta": "Tên file icon đại diện trên sơ đồ" },
+    "left / top": { "kieu": "integer", "bat_buoc": false, "mac_dinh": "Tự sắp xếp", "mo_ta": "Tọa độ X và Y (pixel) trên canvas" },
+    "delay": { "kieu": "integer", "bat_buoc": false, "mac_dinh": 0, "mo_ta": "Số giây trễ khởi động khi Start" },
+    "config": { "kieu": "integer", "bat_buoc": false, "mac_dinh": 0, "mo_ta": "1 nếu nạp startup-config, 0 nếu không" },
+    "config_data": { "kieu": "string", "bat_buoc": false, "mac_dinh": "", "mo_ta": "Cấu hình khởi động mẫu (nếu template hỗ trợ config injection)" }
+  },
+
+  "vi_du_cu_the_san_sang_import": {
+    "nodes": [
+      {
+        "name": "CSR1",
+        "type": "qemu",
+        "template": "csr1000vng",
+        "image": "csr1000vng-universalk9.16.09.05-serial",
+        "cpu": 2,
+        "cpulimit": 1,
+        "ram": 4096,
+        "ethernet": 4,
+        "console": "telnet",
+        "icon": "CSRv1000.png",
+        "left": 250,
+        "top": 200,
+        "config": 1,
+        "config_data": "hostname CSR1\ninterface GigabitEthernet1\n ip address 10.10.10.1 255.255.255.0\n no shutdown\n",
+        "username": "admin",
+        "password": "Password123!"
+      },
+      {
+        "name": "CSR2",
+        "type": "qemu",
+        "template": "csr1000vng",
+        "image": "csr1000vng-universalk9.16.09.05-serial",
+        "cpu": 2,
+        "cpulimit": 1,
+        "ram": 4096,
+        "ethernet": 4,
+        "console": "telnet",
+        "icon": "CSRv1000.png",
+        "left": 550,
+        "top": 200,
+        "config": 1,
+        "config_data": "hostname CSR2\ninterface GigabitEthernet1\n ip address 10.10.10.2 255.255.255.0\n no shutdown\n",
+        "username": "admin",
+        "password": "Password123!"
+      }
+    ],
+    "links": [
+      {
+        "src_node": "CSR1",
+        "src_interface": "GigabitEthernet1",
+        "dst_node": "CSR2",
+        "dst_interface": "GigabitEthernet1"
+      }
+    ]
+  }
+}

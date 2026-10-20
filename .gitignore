@@ -1,0 +1,27 @@
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+id_rsa
+id_ed25519
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+__pycache__/
+*.py[cod]
+
+# Editor files
+.vscode/
+.idea/
+
+# PNetLab device images
+*.qcow2
+*.vmdk
+*.vdi
+*.image
+/addons/iol/bin/*.bin

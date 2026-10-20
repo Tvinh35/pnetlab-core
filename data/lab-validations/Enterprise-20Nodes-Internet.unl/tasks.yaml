@@ -1,0 +1,116 @@
+---
+schema_version: 1
+revision: 1
+source_nodes:
+- id: 1
+  name: R_Edge
+  type: iol
+  template: iol
+- id: 2
+  name: R_ISP1
+  type: iol
+  template: iol
+- id: 3
+  name: R_ISP2
+  type: iol
+  template: iol
+- id: 4
+  name: Core_SW1
+  type: iol
+  template: iol
+- id: 5
+  name: Core_SW2
+  type: iol
+  template: iol
+- id: 6
+  name: Dist_SW1
+  type: iol
+  template: iol
+- id: 7
+  name: Dist_SW2
+  type: iol
+  template: iol
+- id: 8
+  name: Acc_SW1
+  type: iol
+  template: iol
+- id: 9
+  name: Acc_SW2
+  type: iol
+  template: iol
+- id: 10
+  name: Acc_SW3
+  type: iol
+  template: iol
+- id: 11
+  name: Acc_SW4
+  type: iol
+  template: iol
+- id: 12
+  name: SRV_DHCP_DNS
+  type: vpcs
+  template: vpcs
+- id: 13
+  name: SRV_Web
+  type: vpcs
+  template: vpcs
+- id: 14
+  name: PC1
+  type: vpcs
+  template: vpcs
+- id: 15
+  name: PC2
+  type: vpcs
+  template: vpcs
+- id: 16
+  name: PC3
+  type: vpcs
+  template: vpcs
+- id: 17
+  name: PC4
+  type: vpcs
+  template: vpcs
+- id: 18
+  name: PC5
+  type: vpcs
+  template: vpcs
+- id: 19
+  name: PC6
+  type: vpcs
+  template: vpcs
+- id: 20
+  name: PC7_Admin
+  type: vpcs
+  template: vpcs
+tasks:
+- id: task-connectivity
+  title: Kiểm tra kết nối PC1 và Gateway
+  text_task: abs
+  instructions: Yêu cầu cấu hình PC1 và hệ thống mạng đảm bảo PC1 thông Gateway và
+    thông PC2.
+  points: 100
+  checks:
+  - id: check-pc1-gw
+    title: Kiểm tra PC1 ping Default Gateway
+    source_node: 14
+    type: gateway
+    params:
+      count: 5
+      dont_fragment: false
+      expect: true
+      max_loss: 0
+      min_received: 5
+      size: 56
+  - id: check-pc1-to-pc2
+    title: Kiểm tra PC1 ping sang PC2
+    source_node: 14
+    type: ping
+    params:
+      count: 4
+      dont_fragment: false
+      expect: true
+      max_loss: 0
+      min_received: 4
+      size: 56
+      target: 192.168.10.2
+...

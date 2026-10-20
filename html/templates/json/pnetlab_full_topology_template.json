@@ -1,0 +1,690 @@
+{
+  "_huong_dan_su_dung": {
+    "tieu_de": "PNETLAB V8 - TÀI LIỆU VÀ TEMPLATE JSON TOPOLOGY CHUẨN ĐẦY ĐỦ",
+    "mo_ta": "File này định nghĩa cấu trúc JSON topology chuẩn cho PNetLab v8. Với mỗi kiểu node, phần đầu tiên là Form template chuẩn chứa ĐẦY ĐỦ MỌI TRƯỜNG THÔNG TIN và chú thích chi tiết, ngay sau đó là VÍ DỤ CỤ THỂ tuân thủ các image thực tế có sẵn trên máy ảo hoặc có thể tải từ kho 473 image của PNetLab.",
+    "trang_thai_image_tren_may": {
+      "iol_da_co_san": [
+        "L3-ADVENTERPRISEK9-M-15.4-2T.bin",
+        "L2-ADVENTERPRISEK9-M-15.2-IRON-20151103.bin",
+        "L2-ADVENTERPRISEK9-M-15.2-20150703.bin"
+      ],
+      "vpcs_da_co_san": "Tích hợp sẵn trong hệ thống PNetLab, không cần file image",
+      "kho_473_image_co_the_tai": "Tải qua menu System -> Get Image (hoặc ishare2) gồm 459 QEMU + 14 IOL"
+    }
+  },
+  "node_types": {
+    "1_Cisco_IOL": {
+      "_ten_loai": "Cisco IOL (IOS on Linux - L2 Switch & L3 Router)",
+      "_trang_thai": "ĐÃ CÓ SẴN TRÊN MÁY ẢO NÀY (Chạy ngay 100%)",
+      "_thu_muc_image": "/opt/unetlab/addons/iol/bin/",
+      "template_chuan_day_du_moi_truong": {
+        "name": "R1",
+        "type": "iol",
+        "template": "iol",
+        "image": "L3-ADVENTERPRISEK9-M-15.4-2T.bin",
+        "ram": 1024,
+        "nvram": 1024,
+        "ethernet": 4,
+        "serial": 0,
+        "keepalive": 0,
+        "iol_options": "",
+        "icon": "Router.png",
+        "left": 250,
+        "top": 200,
+        "delay": 0,
+        "config": 1,
+        "config_data": "hostname R1\n!\ninterface Ethernet0/0\n ip address 10.0.0.1 255.255.255.0\n no shutdown\n!\nend\n"
+      },
+      "mo_ta_chi_tiet_cac_truong": {
+        "name": {
+          "kieu": "string",
+          "bat_buoc": true,
+          "mo_ta": "Tên định danh node, không được trùng lặp trong lab (vd: 'R1', 'SW1')"
+        },
+        "type": {
+          "kieu": "string",
+          "bat_buoc": true,
+          "mo_ta": "Loại thiết bị, với IOL luôn khai báo là 'iol'"
+        },
+        "template": {
+          "kieu": "string",
+          "bat_buoc": true,
+          "mo_ta": "Template thiết bị, luôn khai báo là 'iol'"
+        },
+        "image": {
+          "kieu": "string",
+          "bat_buoc": true,
+          "mo_ta": "Tên file image có sẵn trong /opt/unetlab/addons/iol/bin/. Máy này đã có: 'L3-ADVENTERPRISEK9-M-15.4-2T.bin' (Router L3) và 'L2-ADVENTERPRISEK9-M-15.2-IRON-20151103.bin' (Switch L2)"
+        },
+        "ram": {
+          "kieu": "integer",
+          "bat_buoc": false,
+          "mac_dinh": 1024,
+          "mo_ta": "Dung lượng RAM cấp cho thiết bị (MB)"
+        },
+        "nvram": {
+          "kieu": "integer",
+          "bat_buoc": false,
+          "mac_dinh": 1024,
+          "mo_ta": "Dung lượng NVRAM (KB)"
+        },
+        "ethernet": {
+          "kieu": "integer",
+          "bat_buoc": false,
+          "mac_dinh": 4,
+          "mo_ta": "Số nhóm cổng Ethernet (mỗi nhóm gồm 4 cổng eX/0-3). ethernet=2 tạo ra 8 cổng (e0/0-3, e1/0-3)"
+        },
+        "serial": {
+          "kieu": "integer",
+          "bat_buoc": false,
+          "mac_dinh": 0,
+          "mo_ta": "Số nhóm cổng Serial (mỗi nhóm gồm 4 cổng sX/0-3)"
+        },
+        "keepalive": {
+          "kieu": "integer",
+          "bat_buoc": false,
+          "mac_dinh": 0,
+          "mo_ta": "Giữ kết nối keepalive (0: tắt, 1: bật)"
+        },
+        "iol_options": {
+          "kieu": "string",
+          "bat_buoc": false,
+          "mac_dinh": "",
+          "mo_ta": "Tham số dòng lệnh bổ sung cho tiến trình IOL"
+        },
+        "icon": {
+          "kieu": "string",
+          "bat_buoc": false,
+          "mac_dinh": "Router.png",
+          "mo_ta": "Icon hiển thị trên canvas: 'Router.png', 'Switch.png', 'Router-2D-Gen-White-S.svg'"
+        },
+        "left": {
+          "kieu": "integer",
+          "bat_buoc": false,
+          "mac_dinh": "Tự sắp xếp",
+          "mo_ta": "Tọa độ trục ngang X trên canvas (pixel)"
+        },
+        "top": {
+          "kieu": "integer",
+          "bat_buoc": false,
+          "mac_dinh": "Tự sắp xếp",
+          "mo_ta": "Tọa độ trục dọc Y trên canvas (pixel)"
+        },
+        "delay": {
+          "kieu": "integer",
+          "bat_buoc": false,
+          "mac_dinh": 0,
+          "mo_ta": "Số giây trễ khởi động khi bấm Start"
+        },
+        "config": {
+          "kieu": "integer",
+          "bat_buoc": false,
+          "mac_dinh": 0,
+          "mo_ta": "1 nếu có startup configuration, 0 nếu khởi động trắng"
+        },
+        "config_data": {
+          "kieu": "string",
+          "bat_buoc": false,
+          "mac_dinh": "",
+          "mo_ta": "Toàn văn cấu hình CLI khởi động của thiết bị"
+        }
+      },
+      "vi_du_cu_the": [
+        {
+          "name": "R1",
+          "type": "iol",
+          "template": "iol",
+          "image": "L3-ADVENTERPRISEK9-M-15.4-2T.bin",
+          "ram": 1024,
+          "nvram": 1024,
+          "ethernet": 2,
+          "serial": 0,
+          "icon": "Router.png",
+          "left": 250,
+          "top": 200,
+          "config_data": "hostname R1\ninterface Ethernet0/0\n description Uplink to SW1\n ip address 192.168.1.1 255.255.255.0\n no shutdown\n"
+        },
+        {
+          "name": "SW1",
+          "type": "iol",
+          "template": "iol",
+          "image": "L2-ADVENTERPRISEK9-M-15.2-IRON-20151103.bin",
+          "ram": 512,
+          "nvram": 1024,
+          "ethernet": 4,
+          "serial": 0,
+          "icon": "Switch.png",
+          "left": 550,
+          "top": 200,
+          "config_data": "hostname SW1\nvlan 10,20\ninterface Ethernet0/0\n switchport mode trunk\n"
+        }
+      ]
+    },
+    "2_VPCS": {
+      "_ten_loai": "VPCS (Virtual PC Simulator - Máy trạm nhẹ dùng để test ping, traceroute, DHCP)",
+      "_trang_thai": "ĐÃ CÓ SẴN TRÊN MÁY ẢO NÀY (Tích hợp sẵn, không cần image)",
+      "_thu_muc_image": "Tích hợp sẵn trong PNetLab (/opt/vpcsu/bin/vpcs)",
+      "template_chuan_day_du_moi_truong": {
+        "name": "VPC1",
+        "type": "vpcs",
+        "template": "vpcs",
+        "image": "",
+        "ethernet": 1,
+        "icon": "Desktop.png",
+        "left": 250,
+        "top": 200,
+        "delay": 0,
+        "config": 1,
+        "config_data": "set pcname VPC1\nip 192.168.1.50/24 192.168.1.1\n"
+      },
+      "mo_ta_chi_tiet_cac_truong": {
+        "name": {
+          "kieu": "string",
+          "bat_buoc": true,
+          "mo_ta": "Tên định danh PC (vd: 'PC1', 'Client-VLAN10')"
+        },
+        "type": {
+          "kieu": "string",
+          "bat_buoc": true,
+          "mo_ta": "Loại thiết bị, luôn là 'vpcs'"
+        },
+        "template": {
+          "kieu": "string",
+          "bat_buoc": true,
+          "mo_ta": "Template thiết bị, luôn là 'vpcs'"
+        },
+        "image": {
+          "kieu": "string",
+          "bat_buoc": false,
+          "mac_dinh": "''",
+          "mo_ta": "Không cần thiết cho VPCS, để chuỗi rỗng ''"
+        },
+        "ethernet": {
+          "kieu": "integer",
+          "bat_buoc": false,
+          "mac_dinh": 1,
+          "mo_ta": "Số lượng cổng mạng của VPCS (thường là 1 tương ứng với eth0)"
+        },
+        "icon": {
+          "kieu": "string",
+          "bat_buoc": false,
+          "mac_dinh": "Desktop.png",
+          "mo_ta": "Icon máy tính hiển thị trên canvas ('Desktop.png', 'PC-2D-Desktop-Generic-S.svg')"
+        },
+        "left": {
+          "kieu": "integer",
+          "bat_buoc": false,
+          "mac_dinh": "Tự sắp xếp",
+          "mo_ta": "Tọa độ X trên canvas"
+        },
+        "top": {
+          "kieu": "integer",
+          "bat_buoc": false,
+          "mac_dinh": "Tự sắp xếp",
+          "mo_ta": "Tọa độ Y trên canvas"
+        },
+        "delay": {
+          "kieu": "integer",
+          "bat_buoc": false,
+          "mac_dinh": 0,
+          "mo_ta": "Số giây trễ khởi động node khi Start"
+        },
+        "config_data": {
+          "kieu": "string",
+          "bat_buoc": false,
+          "mac_dinh": "",
+          "mo_ta": "Tập lệnh cấu hình sẵn của VPCS (vd: 'ip 192.168.1.10/24 192.168.1.1' hoặc 'dhcp')"
+        }
+      },
+      "vi_du_cu_the": [
+        {
+          "name": "VPC1",
+          "type": "vpcs",
+          "template": "vpcs",
+          "ethernet": 1,
+          "icon": "Desktop.png",
+          "left": 250,
+          "top": 380,
+          "config_data": "set pcname VPC1\nip 192.168.1.50/24 192.168.1.1\n"
+        },
+        {
+          "name": "VPC2",
+          "type": "vpcs",
+          "template": "vpcs",
+          "ethernet": 1,
+          "icon": "Desktop.png",
+          "left": 550,
+          "top": 380,
+          "config_data": "set pcname VPC2\ndhcp\n"
+        }
+      ]
+    },
+    "3_QEMU_VM": {
+      "_ten_loai": "QEMU Virtual Machine (Cisco CSR1000v, IOSv, ASAv, FortiGate, MikroTik, Linux, Windows)",
+      "_trang_thai": "ĐÃ CÓ SẴN TRÊN MÁY ẢO: csr1000vng-universalk9.16.09.05-serial",
+      "_thu_muc_image": "/opt/unetlab/addons/qemu/",
+      "_cac_image_pho_bien_trong_kho_473": [
+        "csr1000vng-universalk9.16.09.05-serial (ĐÃ CÓ SẴN TRÊN MÁY ẢO)",
+        "vios-adventerprisek9-m.SPA.154-3M8 (Cisco IOSv L3 Router)",
+        "viosl2-15.2.4.55e (Cisco IOSv L2 Switch)",
+        "fortinet-FGT-v6-4-build1579 (FortiGate Firewall)",
+        "fortinet-FGT-v7.0.3build0237 (FortiGate v7)",
+        "mikrotik-6.49 (MikroTik RouterOS)",
+        "linux-ubuntu-server-20.04 (Ubuntu Server)",
+        "win-10 (Windows 10)"
+      ],
+      "template_chuan_day_du_moi_truong": {
+        "name": "CSR1",
+        "type": "qemu",
+        "template": "csr1000vng",
+        "image": "csr1000vng-universalk9.16.09.05-serial",
+        "cpu": 2,
+        "cpulimit": 1,
+        "ram": 4096,
+        "ethernet": 4,
+        "console": "telnet",
+        "console_2nd": "",
+        "qemu_arch": "x86_64",
+        "qemu_version": "4.1.0",
+        "qemu_nic": "vmxnet3",
+        "qemu_options": "-machine type=pc,accel=kvm -cpu host -serial mon:stdio -nographic -no-user-config -nodefaults -rtc base=utc",
+        "firstmac": "50:00:00:01:00:00",
+        "icon": "CSRv1000.png",
+        "left": 250,
+        "top": 200,
+        "delay": 0,
+        "config": 1,
+        "config_data": "hostname CSR1\ninterface GigabitEthernet1\n ip address 10.1.1.1 255.255.255.0\n no shutdown\n",
+        "username": "admin",
+        "password": "Password123!"
+      },
+      "mo_ta_chi_tiet_cac_truong": {
+        "name": {
+          "kieu": "string",
+          "bat_buoc": true,
+          "mo_ta": "Tên định danh node trên sơ đồ (vd: 'CSR-Edge', 'CSR2')"
+        },
+        "type": {
+          "kieu": "string",
+          "bat_buoc": true,
+          "mo_ta": "Loại thiết bị, luôn là 'qemu'"
+        },
+        "template": {
+          "kieu": "string",
+          "bat_buoc": true,
+          "mo_ta": "Template định dạng máy ảo ('csr1000v', 'vios', 'viosl2', 'fortinet', 'mikrotik', 'linux', 'win')"
+        },
+        "image": {
+          "kieu": "string",
+          "bat_buoc": true,
+          "mo_ta": "Tên thư mục con trong /opt/unetlab/addons/qemu/. Máy này đã có sẵn: 'csr1000vng-universalk9.16.09.05-serial'"
+        },
+        "cpu": {
+          "kieu": "integer",
+          "bat_buoc": false,
+          "mac_dinh": "Theo template (1-4)",
+          "mo_ta": "Số vCPU cấp cho máy ảo"
+        },
+        "cpulimit": {
+          "kieu": "integer",
+          "bat_buoc": false,
+          "mac_dinh": 1,
+          "mo_ta": "1: Giới hạn CPU host tránh quá tải, 0: Không giới hạn"
+        },
+        "ram": {
+          "kieu": "integer",
+          "bat_buoc": false,
+          "mac_dinh": "Theo template (MB)",
+          "mo_ta": "Dung lượng RAM cấp phát (MB)"
+        },
+        "ethernet": {
+          "kieu": "integer",
+          "bat_buoc": false,
+          "mac_dinh": "Theo template",
+          "mo_ta": "Số card mạng ảo (NIC)"
+        },
+        "console": {
+          "kieu": "string",
+          "bat_buoc": false,
+          "mac_dinh": "telnet",
+          "mo_ta": "Giao thức console: 'telnet', 'vnc', hoặc 'rdp'"
+        },
+        "console_2nd": {
+          "kieu": "string",
+          "bat_buoc": false,
+          "mac_dinh": "",
+          "mo_ta": "Giao thức console phụ nếu có"
+        },
+        "qemu_arch": {
+          "kieu": "string",
+          "bat_buoc": false,
+          "mac_dinh": "x86_64",
+          "mo_ta": "Kiến trúc CPU: 'x86_64' hoặc 'i386'"
+        },
+        "qemu_version": {
+          "kieu": "string",
+          "bat_buoc": false,
+          "mac_dinh": "4.1.0",
+          "mo_ta": "Phiên bản binary QEMU ('4.1.0', '2.12.0', 'default')"
+        },
+        "qemu_nic": {
+          "kieu": "string",
+          "bat_buoc": false,
+          "mac_dinh": "virtio-net-pci",
+          "mo_ta": "Loại driver NIC: 'virtio-net-pci', 'e1000', 'vmxnet3'"
+        },
+        "qemu_options": {
+          "kieu": "string",
+          "bat_buoc": false,
+          "mac_dinh": "Theo template",
+          "mo_ta": "Tham số dòng lệnh tùy chỉnh bổ sung cho QEMU"
+        },
+        "firstmac": {
+          "kieu": "string",
+          "bat_buoc": false,
+          "mac_dinh": "Tự sinh",
+          "mo_ta": "Địa chỉ MAC cơ sở card mạng (50:00:00:xx:xx:xx)"
+        },
+        "icon": {
+          "kieu": "string",
+          "bat_buoc": false,
+          "mac_dinh": "Theo template",
+          "mo_ta": "Tên file icon đại diện trên sơ đồ"
+        },
+        "left / top": {
+          "kieu": "integer",
+          "bat_buoc": false,
+          "mac_dinh": "Tự sắp xếp",
+          "mo_ta": "Tọa độ X và Y (pixel) trên canvas"
+        },
+        "delay": {
+          "kieu": "integer",
+          "bat_buoc": false,
+          "mac_dinh": 0,
+          "mo_ta": "Số giây trễ khởi động khi Start"
+        },
+        "config": {
+          "kieu": "integer",
+          "bat_buoc": false,
+          "mac_dinh": 0,
+          "mo_ta": "1 nếu nạp startup-config, 0 nếu không"
+        },
+        "config_data": {
+          "kieu": "string",
+          "bat_buoc": false,
+          "mac_dinh": "",
+          "mo_ta": "Cấu hình khởi động mẫu"
+        }
+      },
+      "vi_du_cu_the": [
+        {
+          "name": "CSR1",
+          "type": "qemu",
+          "template": "csr1000vng",
+          "image": "csr1000vng-universalk9.16.09.05-serial",
+          "cpu": 2,
+          "cpulimit": 1,
+          "ram": 4096,
+          "ethernet": 4,
+          "console": "telnet",
+          "icon": "CSRv1000.png",
+          "left": 250,
+          "top": 200,
+          "config": 1,
+          "config_data": "hostname CSR1\ninterface GigabitEthernet1\n ip address 10.10.10.1 255.255.255.0\n no shutdown\n"
+        },
+        {
+          "name": "CSR2",
+          "type": "qemu",
+          "template": "csr1000vng",
+          "image": "csr1000vng-universalk9.16.09.05-serial",
+          "cpu": 2,
+          "cpulimit": 1,
+          "ram": 4096,
+          "ethernet": 4,
+          "console": "telnet",
+          "icon": "CSRv1000.png",
+          "left": 550,
+          "top": 200,
+          "config": 1,
+          "config_data": "hostname CSR2\ninterface GigabitEthernet1\n ip address 10.10.10.2 255.255.255.0\n no shutdown\n"
+        }
+      ]
+    },
+    "5_Docker": {
+      "_ten_loai": "Docker Container (Web Server, Network Capture, Wi-Fi Spike, Alpine)",
+      "_trang_thai": "ĐÃ CÓ SẴN TRÊN MÁY ẢO: pnet-capture-web:1.0, pnet-wifi-spike:1.0",
+      "_thu_muc_image": "Docker Local Image Cache",
+      "template_chuan_day_du_moi_truong": {
+        "name": "Docker1",
+        "type": "docker",
+        "template": "docker",
+        "image": "pnet-capture-web:1.0",
+        "ram": 1024,
+        "ethernet": 2,
+        "console": "telnet",
+        "icon": "Docker.png",
+        "left": 250,
+        "top": 200,
+        "delay": 0,
+        "username": "root",
+        "password": "pnetlabpassword",
+        "docker_options": "--privileged"
+      },
+      "mo_ta_chi_tiet_cac_truong": {
+        "name": {
+          "kieu": "string",
+          "bat_buoc": true,
+          "mo_ta": "Tên container node trên sơ đồ"
+        },
+        "type": {
+          "kieu": "string",
+          "bat_buoc": true,
+          "mo_ta": "Loại thiết bị, luôn là 'docker'"
+        },
+        "template": {
+          "kieu": "string",
+          "bat_buoc": true,
+          "mo_ta": "Template thiết bị, luôn là 'docker'"
+        },
+        "image": {
+          "kieu": "string",
+          "bat_buoc": true,
+          "mo_ta": "Tên Docker image (phải có sẵn trên máy chủ qua 'docker images'. Máy này đã có: 'pnet-capture-web:1.0')"
+        },
+        "ram": {
+          "kieu": "integer",
+          "bat_buoc": false,
+          "mac_dinh": 1024,
+          "mo_ta": "Bộ nhớ RAM giới hạn cho container (MB)"
+        },
+        "ethernet": {
+          "kieu": "integer",
+          "bat_buoc": false,
+          "mac_dinh": 1,
+          "mo_ta": "Số card mạng veth kết nối ra lab (eth0, eth1,...)"
+        },
+        "console": {
+          "kieu": "string",
+          "bat_buoc": false,
+          "mac_dinh": "telnet",
+          "mo_ta": "Giao thức console: 'telnet' hoặc 'http'"
+        },
+        "icon": {
+          "kieu": "string",
+          "bat_buoc": false,
+          "mac_dinh": "Docker.png",
+          "mo_ta": "Icon hiển thị"
+        },
+        "delay": {
+          "kieu": "integer",
+          "bat_buoc": false,
+          "mac_dinh": 0,
+          "mo_ta": "Số giây trễ khởi động khi Start"
+        }
+      },
+      "vi_du_cu_the": [
+        {
+          "name": "Docker1",
+          "type": "docker",
+          "template": "docker",
+          "image": "pnet-capture-web:1.0",
+          "ram": 1024,
+          "ethernet": 2,
+          "console": "telnet",
+          "icon": "Docker.png",
+          "left": 250,
+          "top": 200,
+          "docker_options": "--privileged"
+        },
+        {
+          "name": "Docker2",
+          "type": "docker",
+          "template": "docker",
+          "image": "pnet-capture-web:1.0",
+          "ram": 1024,
+          "ethernet": 2,
+          "console": "telnet",
+          "icon": "Docker.png",
+          "left": 550,
+          "top": 200,
+          "docker_options": "--privileged"
+        }
+      ]
+    }
+  },
+  "links_guide": {
+    "_mo_ta": "Danh sách các kết nối Point-to-Point giữa các cổng interface của hai node.",
+    "_quy_tac_ten_cong": {
+      "iol": "e{nhom}/{cong} hoặc s{nhom}/{cong} (vd: 'e0/0', 'e0/1', 'e1/0', 's1/0')",
+      "qemu": "GigabitEthernet1, Gi0/0, eth0, eth1 (tùy theo OS máy ảo)",
+      "vpcs": "eth0",
+      "docker": "eth0, eth1, eth2",
+      "dynamips": "Fa0/0, Fa0/1, S1/0, Gi0/0"
+    },
+    "template_chuan": {
+      "src_node": "Tên node nguồn (bắt buộc, trùng với name trong nodes)",
+      "src_interface": "Tên cổng node nguồn (bắt buộc, vd: 'e0/0')",
+      "dst_node": "Tên node đích (bắt buộc, trùng với name trong nodes)",
+      "dst_interface": "Tên cổng node đích (bắt buộc, vd: 'e0/0')"
+    },
+    "vi_du_cu_the": [
+      {
+        "src_node": "R1",
+        "src_interface": "e0/0",
+        "dst_node": "SW1",
+        "dst_interface": "e0/0"
+      },
+      {
+        "src_node": "SW1",
+        "src_interface": "e0/1",
+        "dst_node": "VPC1",
+        "dst_interface": "eth0"
+      }
+    ]
+  },
+  "cloud_networks_guide": {
+    "_mo_ta": "Kết nối node ra card mạng vật lý hoặc card quản trị của máy chủ PNetLab (Internet / Cloud / Bridged).",
+    "template_chuan": {
+      "name": "Tên đám mây hiển thị (vd: 'Internet-NAT', 'Management-Cloud')",
+      "type": "Loại card mạng PNetLab: 'pnet0' (card quản trị chính / NAT), 'pnet1', 'pnet2',... hoặc 'bridge'",
+      "icon": "Tên icon (vd: 'Cloud.png', 'Internet.png')",
+      "left": 100,
+      "top": 100,
+      "connected_to": {
+        "node": "Tên node kết nối tới (bắt buộc)",
+        "interface": "Tên cổng của node cắm vào cloud (bắt buộc, vd: 'e0/3', 'GigabitEthernet1', 'eth0')"
+      }
+    },
+    "vi_du_cu_the": [
+      {
+        "name": "Internet-NAT",
+        "type": "pnet0",
+        "icon": "Cloud.png",
+        "left": 100,
+        "top": 200,
+        "connected_to": {
+          "node": "R1",
+          "interface": "e0/3"
+        }
+      }
+    ]
+  },
+  "ready_to_import_topology": {
+    "lab": {
+      "name": "Sample-Working-Lab-PNetLab",
+      "description": "Lab mẫu sử dụng 100% các Image có sẵn thực tế trên máy ảo PNetLab này, import là chạy ngay lập tức",
+      "version": "1",
+      "author": "PNetLab Admin",
+      "darkmode": 1,
+      "mode3d": 1
+    },
+    "nodes": [
+      {
+        "name": "R1",
+        "type": "iol",
+        "template": "iol",
+        "image": "L3-ADVENTERPRISEK9-M-15.4-2T.bin",
+        "ram": 1024,
+        "nvram": 1024,
+        "ethernet": 4,
+        "serial": 0,
+        "icon": "Router.png",
+        "left": 250,
+        "top": 200,
+        "config_data": "hostname R1\ninterface Ethernet0/0\n description Link to SW1\n ip address 192.168.10.1 255.255.255.0\n no shutdown\n"
+      },
+      {
+        "name": "SW1",
+        "type": "iol",
+        "template": "iol",
+        "image": "L2-ADVENTERPRISEK9-M-15.2-IRON-20151103.bin",
+        "ram": 1024,
+        "nvram": 1024,
+        "ethernet": 4,
+        "serial": 0,
+        "icon": "Switch.png",
+        "left": 550,
+        "top": 200,
+        "config_data": "hostname SW1\nvlan 10,20\ninterface Ethernet0/0\n switchport mode trunk\n"
+      },
+      {
+        "name": "VPC1",
+        "type": "vpcs",
+        "template": "vpcs",
+        "ethernet": 1,
+        "icon": "Desktop.png",
+        "left": 550,
+        "top": 400,
+        "config_data": "set pcname VPC1\nip 192.168.10.50/24 192.168.10.1\n"
+      }
+    ],
+    "links": [
+      {
+        "src_node": "R1",
+        "src_interface": "e0/0",
+        "dst_node": "SW1",
+        "dst_interface": "e0/0"
+      },
+      {
+        "src_node": "SW1",
+        "src_interface": "e0/1",
+        "dst_node": "VPC1",
+        "dst_interface": "eth0"
+      }
+    ],
+    "cloud_networks": [
+      {
+        "name": "Internet-NAT",
+        "type": "pnet0",
+        "icon": "Cloud.png",
+        "left": 100,
+        "top": 200,
+        "connected_to": {
+          "node": "R1",
+          "interface": "e0/3"
+        }
+      }
+    ]
+  }
+}

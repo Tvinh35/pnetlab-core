@@ -1,0 +1,83 @@
+{
+  "_loai_node": "Cisco IOL (IOS on Linux - L2 Switch & L3 Router)",
+  "_thu_muc_image": "/opt/unetlab/addons/iol/bin/",
+  
+  "template_chuan_day_du_moi_truong": {
+    "name": "R1",
+    "type": "iol",
+    "template": "iol",
+    "image": "L3-ADVENTERPRISEK9-M-15.4-2T.bin",
+    "ram": 1024,
+    "nvram": 1024,
+    "ethernet": 4,
+    "serial": 0,
+    "keepalive": 0,
+    "iol_options": "",
+    "icon": "Router.png",
+    "left": 250,
+    "top": 200,
+    "delay": 0,
+    "config": 1,
+    "config_data": "hostname R1\n!\ninterface Ethernet0/0\n ip address 10.0.0.1 255.255.255.0\n no shutdown\n!\nend\n"
+  },
+
+  "mo_ta_chi_tiet_cac_truong": {
+    "name": { "kieu": "string", "bat_buoc": true, "mo_ta": "Tên định danh node, mặc định theo prefix khi thêm thủ công (vd: 'R1', 'SW1')" },
+    "type": { "kieu": "string", "bat_buoc": true, "mo_ta": "Loại thiết bị, với IOL luôn là 'iol'" },
+    "template": { "kieu": "string", "bat_buoc": true, "mo_ta": "Template thiết bị, luôn là 'iol'" },
+    "image": { "kieu": "string", "bat_buoc": true, "mo_ta": "Tên file image trong /opt/unetlab/addons/iol/bin/ (L3: L3-ADVENTERPRISEK9-M-15.4-2T.bin, L2: L2-ADVENTERPRISEK9-M-15.2-IRON-20151103.bin)" },
+    "ram": { "kieu": "integer", "bat_buoc": false, "mac_dinh": 1024, "mo_ta": "Dung lượng RAM cấp cho thiết bị (MB)" },
+    "nvram": { "kieu": "integer", "bat_buoc": false, "mac_dinh": 1024, "mo_ta": "Dung lượng NVRAM (KB)" },
+    "ethernet": { "kieu": "integer", "bat_buoc": false, "mac_dinh": 4, "mo_ta": "Số nhóm cổng Ethernet (mỗi nhóm gồm 4 cổng eX/0-3). ethernet=4 tạo ra 16 cổng" },
+    "serial": { "kieu": "integer", "bat_buoc": false, "mac_dinh": 0, "mo_ta": "Số nhóm cổng Serial (mỗi nhóm gồm 4 cổng sX/0-3)" },
+    "keepalive": { "kieu": "integer", "bat_buoc": false, "mac_dinh": 0, "mo_ta": "Giữ kết nối keepalive (0: tắt, 1: bật)" },
+    "iol_options": { "kieu": "string", "bat_buoc": false, "mac_dinh": "", "mo_ta": "Tham số dòng lệnh bổ sung cho tiến trình IOL" },
+    "icon": { "kieu": "string", "bat_buoc": false, "mac_dinh": "Router.png", "mo_ta": "Icon hiển thị: 'Router.png', 'Switch.png', 'Router-2D-Gen-White-S.svg'" },
+    "left": { "kieu": "integer", "bat_buoc": false, "mac_dinh": "Tự sắp xếp", "mo_ta": "Tọa độ X trên canvas (pixel)" },
+    "top": { "kieu": "integer", "bat_buoc": false, "mac_dinh": "Tự sắp xếp", "mo_ta": "Tọa độ Y trên canvas (pixel)" },
+    "delay": { "kieu": "integer", "bat_buoc": false, "mac_dinh": 0, "mo_ta": "Số giây trễ khởi động node khi Start" },
+    "config": { "kieu": "integer", "bat_buoc": false, "mac_dinh": 0, "mo_ta": "1: có startup-config, 0: không" },
+    "config_data": { "kieu": "string", "bat_buoc": false, "mac_dinh": "", "mo_ta": "Nội dung CLI cấu hình khởi động" }
+  },
+
+  "vi_du_cu_the_san_sang_import": {
+    "nodes": [
+      {
+        "name": "R1",
+        "type": "iol",
+        "template": "iol",
+        "image": "L3-ADVENTERPRISEK9-M-15.4-2T.bin",
+        "ram": 1024,
+        "nvram": 1024,
+        "ethernet": 4,
+        "serial": 0,
+        "icon": "Router.png",
+        "left": 250,
+        "top": 200,
+        "config_data": "hostname R1\ninterface Ethernet0/0\n description Uplink to SW1\n ip address 10.0.0.1 255.255.255.0\n no shutdown\n"
+      },
+      {
+        "name": "SW1",
+        "type": "iol",
+        "template": "iol",
+        "image": "L2-ADVENTERPRISEK9-M-15.2-IRON-20151103.bin",
+        "ram": 1024,
+        "nvram": 1024,
+        "ethernet": 4,
+        "serial": 0,
+        "icon": "Switch.png",
+        "left": 550,
+        "top": 200,
+        "config_data": "hostname SW1\nvlan 10,20\ninterface Ethernet0/0\n switchport mode trunk\n"
+      }
+    ],
+    "links": [
+      {
+        "src_node": "R1",
+        "src_interface": "e0/0",
+        "dst_node": "SW1",
+        "dst_interface": "e0/0"
+      }
+    ]
+  }
+}

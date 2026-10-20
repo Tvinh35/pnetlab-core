@@ -1,0 +1,6 @@
+package	architecture	version	sha256	size	filename
+pnetlab-bridge-dkms	all	6.8.81resolute1	a7e0bf1dc88b123635276f2931a15e5bef66f57c52c4417043c54272afc86e84	142828	pnetlab-bridge-dkms_6.8.81resolute1_all.deb
+pnetlab-docker	amd64	6.8.81resolute1	3f67f7b6efe6b33e1f3efad138cfebf5247c484d88f6f4bc9f36c84e75b580ba	3616	pnetlab-docker_6.8.81resolute1_amd64.deb
+pnetlab-qemu	amd64	6.8.81resolute1	2a078f822b6348c2f33869c5db9c19671010b98f7eb18fe43f2927d26fff5b79	1275598	pnetlab-qemu_6.8.81resolute1_amd64.deb
+pnetlab-satellite	amd64	6.8.81resolute1	a52dcf8ee800d40d6d042eb2f2d29c944698c53973bc67e37bb3eba2acf4d0dc	9982948	pnetlab-satellite_6.8.81resolute1_amd64.deb
+pnetlab-vpcs	amd64	6.8.81resolute1	3ef31c9917bc58d555ee09013c4a824981db794c3f2295aaddbda48b2b816a56	90426	pnetlab-vpcs_6.8.81resolute1_amd64.deb
